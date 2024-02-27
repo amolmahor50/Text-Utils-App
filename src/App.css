@@ -1,38 +1,181 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar-brand {
+  font-weight: 600;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button{
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.input-output-translate-area {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+}
+
+.box-1, .box-2 {
+  width: 45%;
+  margin: auto;
+}
+
+#myBox{
+  position: relative;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+.translate-arrow {
+  font-size: 25px;
+  margin-top: 50px;
+}
+
+#translate-lang-box {
+  width: 70%;
+  margin: 20px auto;
+  padding: 15px 20px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+#translate-lang-box::-webkit-scrollbar {
+  display: none;
+}
+
+.speaker {
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.copy {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.translate-box  {
+  padding: 15px;
+}
+/* 
+.translate-box::-webkit-input-placeholder {
+  color: #fff;
+} */
+
+.translate-box-handler {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.like-btn, .unlike-btn {
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.blue-count-wrapper {
+  color: blue;
+  font-weight: 600;
+}
+
+.red-count-wrapper {
+  color: red;
+  font-weight: 600;
+}
+
+label span {
+  font-size: 14px;
+}
+
+.preview-headline {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.preview-area {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+.word-char-counting-tag {
+  font-weight: 450;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.translater-btn {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.translate {
+  padding: 10px 30px;
+  border: none;
+  background: #b83505d3;
+  color: #fff;
+  border-radius: 5px;
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
+.small-device-btn {
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 525px){
+
+  .input-output-translate-area {
+      flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .box-1, .box-2 {
+      width: 100%;
+  }
+
+  .translate-arrow {
+    margin: 0;
+  }
+
+  .small-device-btn {
+    display: block;
+  }
+
+  .big-device-btn {
+    display: none;
+  }
+
+  #translate-lang-box {
+      width: 100%;
+  }
+
+  .flex-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items:  center;
+  }
+
+  .translate-box {
+      width: 100%;
   }
 }
