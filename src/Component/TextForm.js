@@ -25,7 +25,7 @@ const TextForm = (props) => {
     const handleChange = (event) => {
         setFromText(event.target.value);
     }
-    
+
     //convert the text to upperCase 
     const handleUpperCase = () => {
         const UpedateText = fromText.toUpperCase();
@@ -88,12 +88,11 @@ const TextForm = (props) => {
     }
 
     //like button handler 
-
     const handleLikeBtn = () => {
         let like = document.getElementById('like');
         let likeBtnResponse = prompt("Please Enter Your Email Id");
         if (likeBtnResponse) {
-            like.style.color = 'blue'
+            like.style.color = 'blue';
             setLikeCount(likeCount = likeCount + 1);
         }
     }
@@ -101,7 +100,7 @@ const TextForm = (props) => {
     //dislike button handler
     const handleDislikeBtn = () => {
         document.getElementById('unlike').style.color = 'red';
-        setDisLike(dislike = dislike - 1)
+        setDisLike(dislike = dislike - 1);
     }
 
     //translate language api handler code
@@ -113,7 +112,7 @@ const TextForm = (props) => {
             .then((data) => {
                 setToText(data.responseData.translatedText);
                 setLoading(false)
-            })
+            });
     }
 
     return (
