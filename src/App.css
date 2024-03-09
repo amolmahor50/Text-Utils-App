@@ -12,6 +12,19 @@ button{
   cursor: pointer;
 }
 
+.alert-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.alert-div {
+  width: 30%;
+  margin-right: 25px;
+}
 
 .input-output-translate-area {
   width: 100%;
@@ -71,10 +84,10 @@ textarea {
 .translate-box  {
   padding: 15px;
 }
-/* 
-.translate-box::-webkit-input-placeholder {
-  color: #fff;
-} */
+
+.color-bind-mode::-webkit-input-placeholder {
+  color: #729cc0;
+}
 
 .translate-box-handler {
   position: absolute;
@@ -129,6 +142,7 @@ label span {
   display: flex;
   justify-content: center;
 }
+
 .translate {
   padding: 10px 30px;
   border: none;
@@ -143,6 +157,15 @@ label span {
 }
 
 @media only screen and (max-width: 525px){
+
+  .alert-container {
+    margin-top: 12px;
+  }
+
+  .alert-div {
+    width: 100%;
+    margin: 0;
+  }
 
   .input-output-translate-area {
       flex-direction: column;

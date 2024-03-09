@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import languages from './languages';
 
@@ -51,6 +50,8 @@ const TextForm = (props) => {
 
     const copyContent = (text) => {
         navigator.clipboard.writeText(text);
+        props.showAlert("Copy to text...!", "Success");
+        props.titleShow("Copy text");
     }
 
     // voice speech handler code
@@ -59,6 +60,8 @@ const TextForm = (props) => {
         const utterance = new SpeechSynthesisUtterance(text);
         utterText.lang = languages;
         synth.speak(utterance);
+        props.showAlert("Speak speech your paragraph...!", "Success");
+        props.titleShow("Speak Speech On");
     }
 
     const handleIconClick = (target, id) => {
@@ -94,6 +97,8 @@ const TextForm = (props) => {
         if (likeBtnResponse) {
             like.style.color = 'blue';
             setLikeCount(likeCount = likeCount + 1);
+            props.showAlert("Like Button Clicked...!", "Success");
+            props.titleShow("Like Button Clicked");
         }
     }
 
@@ -101,6 +106,8 @@ const TextForm = (props) => {
     const handleDislikeBtn = () => {
         document.getElementById('unlike').style.color = 'red';
         setDisLike(dislike = dislike - 1);
+        props.showAlert("Dislike Button Clicked...!", "Success");
+        props.titleShow("Dislike Button Clicked");
     }
 
     //translate language api handler code
@@ -129,9 +136,14 @@ const TextForm = (props) => {
                             }
                         </select>
                         <div id="myBox">
-                            <textarea placeholder='Enter Text her..' className="form-control mb-4" rows="8" style={{ backgroundColor: props.mode === 'dark' ? '#393332' : '#fff', color: props.mode === 'dark' ? 'white' : 'black' }} value={fromText} onChange={(e) => setFromText(e.target.value)}></textarea>
-                            <i className="fa-solid fa-volume-high speaker" onClick={(e) => handleIconClick(e.target, 'from')}></i>
-                            <i id='from' className="fa-regular fa-copy copy" onClick={(e) => handleIconClick(e.target, 'from')}></i>
+                            <textarea placeholder='Enter Text her..' className="form-control mb-4 color-bind-mode" rows="8" style={{ backgroundColor: props.mode === 'dark' ? '#393332' : '#fff', color: props.mode === 'dark' ? 'white' : 'black' }} value={fromText} onChange={(e) => setFromText(e.target.value)}></textarea>
+                            {
+                                fromText.length === 0 ? '' :
+                                <div>
+                                    <i className="fa-solid fa-volume-high speaker" onClick={(e) => handleIconClick(e.target, 'from')}></i>
+                                    <i id='from' className="fa-regular fa-copy copy" onClick={(e) => handleIconClick(e.target, 'from')}></i>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className='flex-box'>
@@ -147,7 +159,7 @@ const TextForm = (props) => {
                             }
                         </select>
                         <div id="myBox">
-                            <textarea placeholder='Translate' className="form-control mb-4 translate-box" rows="8" style={{ backgroundColor: props.mode === 'dark' ? '#393332' : '#fafafa', color: props.mode === 'dark' ? 'white' : 'black' }} value={toText}></textarea>
+                            <textarea placeholder='Translate' className="form-control mb-4 translate-box color-bind-mode" rows="8" style={{ backgroundColor: props.mode === 'dark' ? '#393332' : '#fafafa', color: props.mode === 'dark' ? 'white' : 'black' }} value={toText}></textarea>
                             <i className="fa-solid fa-volume-high speaker" onClick={(e) => handleIconClick(e.target, 'to')}></i>
                             <div className="translate-box-handler">
                                 <i id='to' className="fa-regular fa-copy" onClick={(e) => handleIconClick(e.target, 'to')}></i>
