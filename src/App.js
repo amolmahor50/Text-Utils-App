@@ -1,9 +1,10 @@
 import React,{useState} from "react";
 import "./App.css";
-import Navabar from "./Component/UI/Navabar";
+import Navabar from "./Component/ui/Navabar";
 import TextForm from "./Component/TextForm";
 import Alert from "./Component/Alert";
 import TextInputForm from "./Component/TextInputForm";
+import TranslateActionButton from "./Component/ui/TranslateActionButton";
 
 function App() {
   const [mode, setmode] = useState("light"); // Wheather dark mod is enable or not..
@@ -53,6 +54,9 @@ function App() {
         <TextForm showAlert= {showAlert} titleShow= {titleShow} heading= "Try TextUtils- Convert UpperCase to LowerCase, LowerCase to UpperCase, Word Counter, Character Counter, Copy Text, Remove Extra Spaces " mode= {mode} />
       </div>  */}
       <Navabar/>
+      <div className="sm:max-w-7xl w-full mx-auto overflow-hidden">
+      <TranslateActionButton/>
+      </div>
       {/* <TextInputForm/> */}
     </div>
   );
