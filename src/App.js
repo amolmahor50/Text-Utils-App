@@ -1,8 +1,9 @@
 import React,{useState} from "react";
 import "./App.css";
-import Navabar from "./Component/Navabar";
+import Navabar from "./Component/UI/Navabar";
 import TextForm from "./Component/TextForm";
 import Alert from "./Component/Alert";
+import TextInputForm from "./Component/TextInputForm";
 
 function App() {
   const [mode, setmode] = useState("light"); // Wheather dark mod is enable or not..
@@ -46,11 +47,13 @@ function App() {
 
   return (
     <div>
-      <Navabar mode= {mode} toggleMode={toggleMode}/>
+      {/* <Navabar mode= {mode} toggleMode={toggleMode}/>
       <Alert alert={alert}/>
       <div className="container my-4">
         <TextForm showAlert= {showAlert} titleShow= {titleShow} heading= "Try TextUtils- Convert UpperCase to LowerCase, LowerCase to UpperCase, Word Counter, Character Counter, Copy Text, Remove Extra Spaces " mode= {mode} />
-      </div> 
+      </div>  */}
+      <Navabar/>
+      {/* <TextInputForm/> */}
     </div>
   );
 }
