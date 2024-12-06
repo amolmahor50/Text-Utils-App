@@ -1,25 +1,25 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Navabar from "./Component/ui/Navabar";
 import TextForm from "./Component/TextForm";
 import Alert from "./Component/Alert";
 import TextInputForm from "./Component/TextInputForm";
-import TranslateActionButton from "./Component/ui/TranslateActionButton";
+import {TextTrasnlatorButtons, TranslateActionButton} from "./Component/ui/TranslateActionButton";
+import ManageDataHistory from "./Component/ui/ManageDataHistory";
 
 function App() {
   const [mode, setmode] = useState("light"); // Wheather dark mod is enable or not..
   const [alert, setAlert] = useState(null);
 
-
   //alert the massage handling data
   const showAlert = (massage, type) => {
     setAlert({
-      msg : massage,
-      type : type
+      msg: massage,
+      type: type
     });
     setTimeout(() => {
       setAlert(null);
-    },3000)  
+    }, 3000)
 
   }
 
@@ -27,18 +27,18 @@ function App() {
   const titleShow = (massage) => {
     setTimeout(() => {
       document.title = `TextUtils- ${massage}`;
-    },700)
+    }, 700)
   }
 
   //light mode handling data
-  const toggleMode = () =>{
-    if(mode === "light"){
+  const toggleMode = () => {
+    if (mode === "light") {
       setmode('dark');
       document.body.style.backgroundColor = "#393332";
       showAlert("Dark mode has been enable", "Success");
       titleShow("Dark Mode");
     }
-    else{
+    else {
       setmode('light');
       document.body.style.backgroundColor = '#fff';
       showAlert("light mode has been enable", "Success");
@@ -53,11 +53,13 @@ function App() {
       <div className="container my-4">
         <TextForm showAlert= {showAlert} titleShow= {titleShow} heading= "Try TextUtils- Convert UpperCase to LowerCase, LowerCase to UpperCase, Word Counter, Character Counter, Copy Text, Remove Extra Spaces " mode= {mode} />
       </div>  */}
-      <Navabar/>
+      <Navabar />
       <div className="sm:max-w-7xl w-full mx-auto overflow-hidden">
-      <TranslateActionButton/>
+        <TranslateActionButton />
+        <TextInputForm />
+        <TextTrasnlatorButtons/>
+        <ManageDataHistory/>
       </div>
-      {/* <TextInputForm/> */}
     </div>
   );
 }
