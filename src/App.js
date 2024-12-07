@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import Navabar from "./Component/ui/Navabar";
-import TextForm from "./Component/TextForm";
-import Alert from "./Component/Alert";
-import TextInputForm from "./Component/TextInputForm";
-import {TextTrasnlatorButtons, TranslateActionButton} from "./Component/ui/TranslateActionButton";
-import ManageDataHistory from "./Component/ui/ManageDataHistory";
+import Pages from './Pages'
+import About from './page/About'
+import Commands from "./page/Commands"
+import { Route, Routes } from "react-router-dom";
+import { TranslateActionButton } from "./Component/ui/TranslateActionButton";
+import Website from "./Component/ui/Website";
+import Document from "./Component/ui/Documents";
+import Image from "./Component/ui/Images";
+import AlertMassage from "./Component/ui/AlertMassage"
 
 function App() {
   const [mode, setmode] = useState("light"); // Wheather dark mod is enable or not..
@@ -27,7 +31,7 @@ function App() {
   const titleShow = (massage) => {
     setTimeout(() => {
       document.title = `TextUtils- ${massage}`;
-    }, 700)
+    }, 1000)
   }
 
   //light mode handling data
@@ -48,19 +52,20 @@ function App() {
 
   return (
     <div>
-      {/* <Navabar mode= {mode} toggleMode={toggleMode}/>
-      <Alert alert={alert}/>
-      <div className="container my-4">
-        <TextForm showAlert= {showAlert} titleShow= {titleShow} heading= "Try TextUtils- Convert UpperCase to LowerCase, LowerCase to UpperCase, Word Counter, Character Counter, Copy Text, Remove Extra Spaces " mode= {mode} />
-      </div>  */}
       <Navabar />
       <div className="sm:max-w-7xl w-full mx-auto overflow-hidden">
         <TranslateActionButton />
-        <TextInputForm />
-        <TextTrasnlatorButtons/>
-        <ManageDataHistory/>
+        <AlertMassage/>
+        <Routes>
+          <Route path="/" element={<Pages />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/commands" element={<Commands />} />
+          <Route path="/website" element={<Website/>}/>
+          <Route path="/image" element={<Image/>}/>
+          <Route path="/document" element={<Document/>}/>
+        </Routes>
       </div>
-    </div>
+    </div >
   );
 }
 

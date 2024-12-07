@@ -3,6 +3,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from "../../Images/logo.png"
 import { MdOutlineLightMode } from "react-icons/md";
 import { Badge, IconButton, Tooltip } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const navigation = [
@@ -25,7 +27,16 @@ function notificationsLabel(count) {
   return `${count} notifications`;
 }
 
-export default function Example() {
+export default function Navabar() {
+  const location = useLocation();
+
+    // Dynamically determine which route is currently active
+    const updatedNavigation = navigation.map((item) => ({
+      ...item,
+      // Check if the current path matches the href of the item
+      current: location.pathname === item.href,
+    }));
+
   return (
     <Disclosure as="nav" className="border-b ">
       <div className="mx-auto sm:max-w-7xl w-full px-2 sm:px-0">
@@ -50,10 +61,10 @@ export default function Example() {
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <a
+                {updatedNavigation.map((item) => (
+                  <Link 
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : ' hover:bg-gray-700 hover:text-white',
@@ -61,7 +72,7 @@ export default function Example() {
                     )}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -131,7 +142,7 @@ export default function Example() {
 
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
-          {navigation.map((item) => (
+          {updatedNavigation.map((item) => (
             <DisclosureButton
               key={item.name}
               as="a"
