@@ -10,10 +10,10 @@ export function FromLanguageTextArea() {
     return (
         <select
             value={fromLanguage} onChange={(e) => setFromLanguage(e.target.value)}
-            className='w-2/4 border-2 p-2 mb-2 rounded-lg outline-none no-scrollbar bg-transparent'>
+            className='w-2/4 border-2 p-2 mb-2 rounded-lg outline-none no-scrollbar bg-transparent text-sm'>
             {
                 Object.entries(languages).map(([code, name]) => (
-                    <option key={code} value={code}>{name}</option>
+                    <option className="text-sm" key={code} value={code}>{name}</option>
                 ))
             }
         </select>
@@ -26,10 +26,10 @@ export function ToLanguageTextArea() {
     return (
         <select
             value={toLanguage} onChange={(e) => setToLanguage(e.target.value)}
-            className='w-2/4 border-2 p-2 mb-2 rounded-lg outline-none no-scrollbar bg-transparent'>
+            className='w-2/4 border-2 p-2 mb-2 rounded-lg outline-none no-scrollbar bg-transparent text-sm'>
             {
                 Object.entries(languages).map(([code, name]) => (
-                    <option key={code} value={code}>{name}</option>
+                    <option className="text-sm" key={code} value={code}>{name}</option>
                 ))
             }
         </select>

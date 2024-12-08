@@ -110,7 +110,7 @@ export function TextTrasnlatorButtons() {
             {
                 TranslateTextButtons.map((action, index) => (
                     <div key={index} onClick={action.handleClicked}>
-                        <Button>
+                        <Button >
                             {action.actionName}
                         </Button>
                     </div>
