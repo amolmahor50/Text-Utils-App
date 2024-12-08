@@ -13,7 +13,7 @@ export const TextContextProvider = ({ children }) => {
     const titleShow = (massage) => {
         setTimeout(() => {
             document.title = `Translate | Text-Utils- ${massage}`;
-        }, 700)
+        }, 500)
     }
 
     // from textarea and to textarea inside text copy handler
@@ -23,16 +23,35 @@ export const TextContextProvider = ({ children }) => {
         titleShow("Copy Text");
     }
 
-    const handleCopyText =(target, id) => {
-        if(target) {
-          if(id == "from"){
-           copyContent(fromText);
-          }
-          else{
-           copyContent(toText);
-          }
+    const handleCopyText = (target, id) => {
+        if (target) {
+            if (id == "fromText") {
+                copyContent(fromText);
+            }
+            else {
+                copyContent(toText);
+            }
         }
-      }
+    }
+
+    // voice speech handler fromTextArea and toTextArea
+    const utterText = (text, languages) => {
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterText.lang = languages;
+        synth.speak(utterance);
+        showAlert("Speak speech your paragraph...!", "Success");
+        titleShow("Speak Speech On");
+    }
+
+    const handelVoiceSound = (id) => {
+        if(id == "fromText"){
+            utterText(fromText, fromLanguage);
+        }
+        else if(id == "toText"){
+            utterText(toText, toLanguage);
+        }
+    }
 
     // alert massage show 
     const showAlert = (massage) => {
@@ -61,13 +80,13 @@ export const TextContextProvider = ({ children }) => {
             fromText, setFromText, toText, setToText,
 
             // popup realted massage
-            alertMsg, showAlert, titleShow,
+            alertMsg, setAlertMsg, showAlert, titleShow,
 
             // languages provide data
             fromLanguage, setFromLanguage, toLanguage, setToLanguage,
 
             // handling data
-            handleExchangeLangArrow, handleCopyText, 
+            handleExchangeLangArrow, handleCopyText, handelVoiceSound,
 
         }}>
             {children}

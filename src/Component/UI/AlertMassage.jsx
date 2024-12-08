@@ -5,13 +5,14 @@ import { useContext, useState } from 'react';
 import { TextContext } from '../../ContextAPI/TextContext';
 
 export default function SimpleSnackbar() {
-  const { alertMsg } = useContext(TextContext);
+  const { alertMsg, setAlertMsg} = useContext(TextContext);
 
   const action = (
     <IconButton
       size="small"
       aria-label="close"
       color="inherit"
+      onClick={() => setAlertMsg(null)}
     >
       <IoIosClose size={30} />
     </IconButton>
@@ -22,7 +23,7 @@ export default function SimpleSnackbar() {
       {alertMsg && <div>
         <Snackbar
           open={alertMsg != null}
-          autoHideDuration={6000}
+          autoHideDuration={10000}
           message={alertMsg}
           action={action}
         /></div>}

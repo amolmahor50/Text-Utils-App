@@ -22,7 +22,8 @@ function TextInputForm() {
     fromLanguage,
     toLanguage,
     handleExchangeLangArrow,
-    handleCopyText
+    handleCopyText,
+    handelVoiceSound
   } = useContext(TextContext);
 
 
@@ -62,14 +63,14 @@ function TextInputForm() {
               ""
             ) : (
               <div>
-                <span className={`absolute right-2 top-2`} onClick={(e) => handleCopyText(e.target, "from")}>
+                <span className={`absolute right-2 top-2`} onClick={(e) => handleCopyText(e.target, "fromText")}>
                   <Tooltip title="Copy">
                     <IconButton>
                       <FaRegCopy className="text-lg"/>
                     </IconButton>
                   </Tooltip>
                 </span>
-                <span className={`absolute bottom-2 left-2`}>
+                <span className={`absolute bottom-2 left-2`} onClick={() => handelVoiceSound("fromText")}>
                   <Tooltip title="Voice Speaker">
                     <IconButton>
                       <PiSpeakerHighFill className="text-lg" />
@@ -116,14 +117,14 @@ function TextInputForm() {
               ""
             ) : (
               <div>
-                <span className={`absolute right-2 top-2`} onClick={(e) => handleCopyText(e.target, "to")}>
+                <span className={`absolute right-2 top-2`} onClick={(e) => handleCopyText(e.target, "toText")}>
                   <Tooltip title="Copy">
                     <IconButton>
                       <FaRegCopy className="text-lg"/>
                     </IconButton>
                   </Tooltip>
                 </span>
-                <span className={`absolute bottom-2 left-2`}>
+                <span className={`absolute bottom-2 left-2`} onClick={() => handelVoiceSound("toText")}>
                   <Tooltip title="Voice Speaker">
                     <IconButton>
                       <PiSpeakerHighFill className="text-lg" />
