@@ -50,7 +50,7 @@ export default function Navabar() {
               <XMarkIcon aria-hidden="true" className="hidden size-7 group-data-[open]:block" />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center sm:ml-0 ml-14 sm:items-stretch sm:justify-start">
+          <div className="flex flex-1 items-center  ml-14 sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center text-xl sm:text-lg gap-1 cursor-pointer">
               <img
                 alt="Your Company"

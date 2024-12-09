@@ -8,12 +8,34 @@ export const TextContextProvider = ({ children }) => {
     const [fromLanguage, setFromLanguage] = useState('en-GB');
     const [toLanguage, setToLanguage] = useState("mr-MR");
     const [alertMsg, setAlertMsg] = useState(null);
+    const [isTyping, setIsTyping] = useState(false);
+
+    useEffect(() => {
+        if (fromText) {
+            setIsTyping(true);
+        }
+
+        const typingTimer = setTimeout(() => {
+            setIsTyping(false);
+        }, 2000);
+
+        return () => clearTimeout(typingTimer);
+    }, [fromText]);
 
     //html title show handling data 
     const titleShow = (massage) => {
         setTimeout(() => {
             document.title = `Translate | Text-Utils- ${massage}`;
         }, 500)
+    }
+
+    // alert massage show 
+    const showAlert = (massage) => {
+        setAlertMsg(massage);
+
+        setTimeout(() => {
+            setAlertMsg(null)
+        }, 4000);
     }
 
     // from textarea and to textarea inside text copy handler
@@ -45,21 +67,12 @@ export const TextContextProvider = ({ children }) => {
     }
 
     const handelVoiceSound = (id) => {
-        if(id == "fromText"){
+        if (id == "fromText") {
             utterText(fromText, fromLanguage);
         }
-        else if(id == "toText"){
+        else if (id == "toText") {
             utterText(toText, toLanguage);
         }
-    }
-
-    // alert massage show 
-    const showAlert = (massage) => {
-        setAlertMsg(massage);
-
-        setTimeout(() => {
-            setAlertMsg(null)
-        }, 4000);
     }
 
     // when i clicked the arrow icon then selected language changed
@@ -80,7 +93,7 @@ export const TextContextProvider = ({ children }) => {
             fromText, setFromText, toText, setToText,
 
             // popup realted massage
-            alertMsg, setAlertMsg, showAlert, titleShow,
+            alertMsg, setAlertMsg, showAlert, titleShow, isTyping,
 
             // languages provide data
             fromLanguage, setFromLanguage, toLanguage, setToLanguage,

@@ -1,5 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { TbArrowsLeftRight } from "react-icons/tb";
+import { MdKeyboardVoice } from "react-icons/md";
+import { IoIosStarOutline } from "react-icons/io";
+import { GoShareAndroid } from "react-icons/go";
+import { AiOutlineLike } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import { TextContext } from "../../ContextAPI/TextContext";
 import { Textarea } from "@headlessui/react";
@@ -12,6 +16,7 @@ import {
   ToLanguageTextArea,
 } from "./SelectLanguages";
 import { FeedBackLink } from "./FeedBackLink";
+import { Link } from "react-router-dom";
 
 function TextInputForm() {
   const {
@@ -23,7 +28,8 @@ function TextInputForm() {
     toLanguage,
     handleExchangeLangArrow,
     handleCopyText,
-    handelVoiceSound
+    handelVoiceSound,
+    isTyping
   } = useContext(TextContext);
 
 
@@ -41,7 +47,9 @@ function TextInputForm() {
       });
 
     if (fromText.length === 0) {
-      setToText("");
+      setTimeout(() => {
+        setToText("");
+      }, 1000);
     }
   }, [toLanguage, fromLanguage, fromText, toText]);
 
@@ -58,19 +66,33 @@ function TextInputForm() {
           <div className="hidden sm:block">
             <FromLanguageTextArea />
           </div>
-          <div className="relative">
+          <div className="relative ">
+            {/* voice translator */}
+            <span className={`absolute left-2 bottom-2`}>
+              <Tooltip title="Translate by voice">
+                <IconButton>
+                  <MdKeyboardVoice className="text-lg" />
+                </IconButton>
+              </Tooltip>
+            </span>
             {fromText.length === 0 ? (
               ""
             ) : (
               <div>
+                {/* copy text button */}
                 <span className={`absolute right-2 top-2`} onClick={(e) => handleCopyText(e.target, "fromText")}>
                   <Tooltip title="Copy">
                     <IconButton>
-                      <FaRegCopy className="text-lg"/>
+                      <FaRegCopy className="text-lg" />
                     </IconButton>
                   </Tooltip>
                 </span>
-                <span className={`absolute bottom-2 left-2`} onClick={() => handelVoiceSound("fromText")}>
+                {/* see dictionary */}
+                <span className="absolute bottom-11 left-4 text-sm text-blue-400">
+                  <Link to="/">See dictionary</Link>
+                </span>
+                {/* text speaker */}
+                <span className={`absolute bottom-2 left-12`} onClick={() => handelVoiceSound("fromText")}>
                   <Tooltip title="Voice Speaker">
                     <IconButton>
                       <PiSpeakerHighFill className="text-lg" />
@@ -79,6 +101,7 @@ function TextInputForm() {
                 </span>
               </div>
             )}
+            {/* text count and pencil */}
             <span className="absolute bottom-2 right-2 flex items-center gap-2">
               <span className="text-sm">{fromText.length} / 5,000</span>
               <Tooltip title="Edit Changes">
@@ -87,6 +110,7 @@ function TextInputForm() {
                 </IconButton>
               </Tooltip>
             </span>
+            {/* muted textarea */}
             <Textarea
               placeholder="Type your message here."
               value={fromText}
@@ -113,17 +137,23 @@ function TextInputForm() {
             <ToLanguageTextArea />
           </div>
           <div className="relative">
-            {toText.length === 0 ? (
+            {isTyping === true || fromText.length === 0 ? (
               ""
             ) : (
               <div>
-                <span className={`absolute right-2 top-2`} onClick={(e) => handleCopyText(e.target, "toText")}>
-                  <Tooltip title="Copy">
+                {/* star text */}
+                <span className={`absolute right-2 top-2`} >
+                  <Tooltip title="Save">
                     <IconButton>
-                      <FaRegCopy className="text-lg"/>
+                      <IoIosStarOutline className="text-lg" />
                     </IconButton>
                   </Tooltip>
                 </span>
+                {/* text dictionary */}
+                <span className="absolute bottom-11 left-4 text-sm text-blue-400">
+                  <Link to="/">See dictionary</Link>
+                </span>
+                {/* speaker text */}
                 <span className={`absolute bottom-2 left-2`} onClick={() => handelVoiceSound("toText")}>
                   <Tooltip title="Voice Speaker">
                     <IconButton>
@@ -131,8 +161,36 @@ function TextInputForm() {
                     </IconButton>
                   </Tooltip>
                 </span>
+                {/* share, like and copy button */}
+                <span className="absolute bottom-2 right-2">
+                  {/* copy button */}
+                  <span onClick={(e) => handleCopyText(e.target, "toText")}>
+                    <Tooltip title="Copy">
+                      <IconButton>
+                        <FaRegCopy className="text-lg" />
+                      </IconButton>
+                    </Tooltip>
+                  </span>
+                  {/* like button */}
+                  <span>
+                    <Tooltip title="Rate">
+                      <IconButton>
+                        <AiOutlineLike className="text-lg" />
+                      </IconButton>
+                    </Tooltip>
+                  </span>
+                  {/* share button */}
+                  <span>
+                    <Tooltip title="Share">
+                      <IconButton>
+                        <GoShareAndroid className="text-lg" />
+                      </IconButton>
+                    </Tooltip>
+                  </span>
+                </span>
               </div>
             )}
+            {/* muted textarea */}
             <Textarea
               placeholder="Translate Text"
               value={toText}
@@ -140,9 +198,12 @@ function TextInputForm() {
               className="outline-none border rounded-lg p-3 text-base font-normal bg-[#fafafa] no-scrollbar"
               rows="5"
             />
+            {/* typing logo */}
+            {isTyping && <span className="text-sm absolute bottom-3 left-4 text-blue-400 italic">Typing...</span>}
           </div>
         </div>
       </div>
+      {/* feedback component */}
       <FeedBackLink />
     </>
   );
