@@ -6,11 +6,11 @@ function ManageDataHistory() {
     const items = [
         {
             name: "History",
-            icon: <MdHistory size={35} />
+            icon: <MdHistory size={22} />
         },
         {
             name: "Saved",
-            icon: <IoStar size={35} />
+            icon: <IoStar size={22} />
         }
     ]
     return (

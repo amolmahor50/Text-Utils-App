@@ -1,50 +1,32 @@
-import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
+import { IoIosClose } from "react-icons/io";
+import { useContext, useState } from 'react';
+import { TextContext } from '../../ContextAPI/TextContext';
 
 export default function SimpleSnackbar() {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
+  const { alertMsg, setAlertMsg} = useContext(TextContext);
 
   const action = (
-    <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+      onClick={() => setAlertMsg(null)}
+    >
+      <IoIosClose size={30} />
+    </IconButton>
   );
 
   return (
     <div>
-      <Button onClick={handleClick}>Open Snackbar</Button>
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message="Note archived"
-        action={action}
-      />
+      {alertMsg && <div>
+        <Snackbar
+          open={alertMsg != null}
+          autoHideDuration={10000}
+          message={alertMsg}
+          action={action}
+        /></div>}
     </div>
   );
 }

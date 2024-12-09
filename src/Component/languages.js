@@ -50,6 +50,7 @@ const languages = {
     "men-SL": "Mende",
     "mg-MG": "Malagasy",
     "mi-NZ": "Maori",
+    "mr-MR": "Marathi",
     "ms-MY": "Malay",
     "mt-MT": "Maltese",
     "my-MM": "Burmese",
